@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Github | Issue | Tracker | Home</title>
+    <!-- tailwind and daisyui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- link css -->
+    <link rel="stylesheet" href="style/style.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-<h1>hello home</h1>
+
+<body class="bg-base-200">
+    <!-- navbar -->
+    <header>
+        <div class="navbar w-full">
+            <div class="navbar bg-base-100 shadow-sm">
+                <div class="navbar-start">
+                    <div>
+                        <img class="w-[36px] h-[37px]" src="./assets/github-logo.png" alt="">
+                    </div>
+                    <div class="pl-2">
+                        <p class="text-[#1F2937] text-2xl font-semibold">GitHub Issues Tracker</p>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="join">
+                        <div class="pr-4">
+                            <label class="input validator join-item rounded">
+                                <span class="text-[#64748B]"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                <input type="text" placeholder="Search issues..." required />
+                            </label>
+                        </div>
+                        <button class="btn btn-primary rounded"> + New Issue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--btn section  -->
+    <section class="w-10/12 mx-auto">
+        <div id="btn-container" class="bg-base-100 py-6 px-6 rounded-lg shadow-sm space-x-3">
+            <button onclick="loadCard()" class="btn px-6">All</button>
+            <button class="btn px-6">Open</button>
+            <button class="btn px-6">Closed</button>
+        </div>
+    </section>
+
+    <!-- all cards -->
+    <section id="card-container" class="w-10/12 mx-auto bg-base-200 py-8 grid grid-cols-4 gap-3">
+        
+    </section>
+    <script src="script/home.js"></script>
 </body>
+
 </html>
