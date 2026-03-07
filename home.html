@@ -56,13 +56,13 @@
     <section class="w-10/12 mx-auto">
         <div id="btn-container" class="bg-base-100 py-6 px-6 rounded-lg shadow-sm space-x-3">
             <button onclick="loadCard()" class="btn px-6">All</button>
-            <button class="btn px-6">Open</button>
-            <button class="btn px-6">Closed</button>
+            <button onclick="openCard()" class="btn px-6">Open</button>
+            <button onclick="closedCard()" class="btn px-6">Closed</button>
         </div>
     </section>
 
     <!-- all cards -->
-    <section id="card-container" class="w-10/12 mx-auto bg-base-200 py-8 grid grid-cols-4 gap-3">
+    <section id="card-container" class="w-10/12 mx-auto bg-base-200 py-8 grid grid-cols-2 md:grid-cols-4 gap-3">
         
     </section>
     <script src="script/home.js"></script>
