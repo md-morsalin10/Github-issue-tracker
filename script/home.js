@@ -26,13 +26,14 @@ const loadModal = (id) => {
 
 const displayModal = (word) => {
     const statusBg = word.status === 'open' ? 'bg-green-500' : 'bg-purple-500';
+
     let priorityBg = "bg-red-400"; 
     if (word.priority.toLowerCase() === 'medium'){
         priorityBg = "bg-yellow-500"} 
     if (word.priority.toLowerCase() === 'low'){ 
-        priorityBg = "bg-blue-500";}
-    const labelsHTML = word.labels.map(label => {
+        priorityBg = "bg-gray-500";}
 
+    const labelsHTML = word.labels.map(label => {
         let bgColor, textColor, icon, borderColor;
         if (label.toLowerCase() === "bug") {
             bgColor = "bg-red-100";
@@ -73,12 +74,12 @@ const displayModal = (word) => {
     detailContainer.innerHTML = `
     
                 <div>
-                  <h2 class="text-2xl font-bold text-[#1F2937]">${word.title}</h2>
+                  <h2 class="text-2xl font-bold text-[#1F2937]">${word.title ? word.title : "Not Found"}</h2>
                     <div class="flex gap-4 items-center">
                         <p class="${statusBg} rounded-full px-2 text-white">${word.status}</p>
 
                         <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-                        <p class="text-[14px] text-[#64748B]">Opened by ${word.author}</p>
+                        <p class="text-[14px] text-[#64748B]">Opened by ${word.author ? word.author:"Not Found" }</p>
 
                         <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
                         <p class="text-[14px] text-[#64748B]">22/02/2026</p>
@@ -94,7 +95,7 @@ const displayModal = (word) => {
                 <div class="bg-base-200 flex gap-10 p-4 rounded-lg">
                     <div>
                         <p class="text-[#64748B]">Assignee:</p>
-                        <p class="font-semibold text-[#1F2937]">${word.author}</p>
+                        <p class="font-semibold text-[#1F2937]">${word.author ? word.author : "Not Found"}</p>
                     </div>
                     <div>
                         <p class="text-[#64748B]">Priority:</p>
@@ -157,17 +158,18 @@ const displayCard = (cards) => {
             priorityText = "text-gray-500";
         }
 
-        // console.log(card);
+        // for border color
+        const borderBg = card.status === 'open' ? 'border-green-500' : 'border-purple-500';
         const newDiv = document.createElement("div")
         newDiv.innerHTML = `
-     <div onclick="loadModal(${card.id})" class="bg-base-100 p-4 space-y-3 rounded-lg border-t-5 ${card.status == 'open' ? "border-green-400" : "border-purple-400"} shadow h-full">
+     <div onclick="loadModal(${card.id})" class="${borderBg} bg-base-100 p-4 space-y-3 rounded-lg border-t-5 ${card.status} shadow h-full">
             <div class="flex justify-between">
                 <div>${card.status == 'open' ? '<img/ src= "./assets/Open-Status.png">' : '<img/ src="./assets/Closed-Status.png">'}</div>
                 <div><p class="${priorityBg} ${priorityText} px-2 py-1 rounded-full font-semibold">${card.priority}</p></div>
             </div>
             <div>
-                <p class="font-semibold  text-[#1F2937]">${card.title}</p>
-                <p class="text-[#64748B] text-[14px]">${card.description}</p>
+                <p class="font-semibold text-lg pb-2 text-[#1F2937]">${card.title}</p>
+                <p class="text-[#64748B] text-[12px]">${card.description}</p>
             </div>
             <div class="flex gap-3">
                 ${labelsHTML}
