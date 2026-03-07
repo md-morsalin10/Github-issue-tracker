@@ -1,3 +1,5 @@
+const totalIssue = document.getElementById("total-issue");
+
 const loadCard = ()=>{
         fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res=> res.json())
@@ -48,8 +50,9 @@ const displayCard = (cards) =>{
     cardContainer.appendChild(newDiv)
     
    }
-    
+    totalIssue.innerText = cards.length;
 }
+
 
 const openCard = ()=>{
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
@@ -69,6 +72,7 @@ const closedCard = () =>{
         const closedD = data.data.filter(closedData => closedData.status ==='closed')
         displayCard(closedD)
     })
+    // totalIssue.innerText= closedCard.length;
 }
 
 loadCard()
