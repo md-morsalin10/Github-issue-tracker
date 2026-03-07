@@ -55,9 +55,9 @@
     <!--btn section  -->
     <section class="w-10/12 mx-auto">
         <div id="btn-container" class="bg-base-100 py-6 px-6 rounded-lg shadow-sm space-x-3">
-            <button onclick="loadCard()" class="btn px-6">All</button>
-            <button onclick="openCard()" class="btn px-6">Open</button>
-            <button onclick="closedCard()" class="btn px-6">Closed</button>
+            <button id="all-btn" onclick="loadCard()" class="btn btn-primary px-6">All</button>
+            <button id="open-btn" onclick="openCard()" class="btn px-6">Open</button>
+            <button id="closed-btn" onclick="closedCard()" class="btn px-6">Closed</button>
         </div>
     </section>
 
@@ -67,7 +67,7 @@
             <div class="flex items-center gap-3">
                 <div><img src="./assets/Aperture.png" alt=""></div>
                 <div>
-                    <p id="total-issue" class="text-xl font-semibold text-[#1F2937]">50 <span>Issues</span></p>
+                    <p id="total-issue" class="text-xl font-semibold text-[#1F2937]">50</p>
                     <p class="text-[#64748B]">Track and manage your project issues</p>
                 </div>
             </div>

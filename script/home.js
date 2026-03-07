@@ -1,9 +1,19 @@
 const totalIssue = document.getElementById("total-issue");
 
 const loadCard = ()=>{
+        handleActiveButton("all-btn");
         fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res=> res.json())
         .then(data=> displayCard(data.data))
+}
+
+const handleActiveButton = (activeId) =>{
+    const buttons = document.querySelectorAll("#btn-container .btn")
+    buttons.forEach(btn => {
+        btn.classList.remove("btn-primary");
+    });
+    const clickedBtn = document.getElementById(activeId);
+    clickedBtn.classList.add("btn-primary");
 }
 // {
 //     "id": 6,
@@ -50,21 +60,23 @@ const displayCard = (cards) =>{
     cardContainer.appendChild(newDiv)
     
    }
-    totalIssue.innerText = cards.length;
+    totalIssue.innerText = cards.length+" Issues "
 }
 
 
 const openCard = ()=>{
+    handleActiveButton("open-btn");
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
     fetch(url)
     .then(res=> res.json())
     .then(json=> {
-        const openD = json.data.filter(openData=> openData.status === 'open')
+        const openD = json.data.filter(openData => openData.status === 'open')
         displayCard(openD)
     })
 }
 
 const closedCard = () =>{
+    handleActiveButton("closed-btn");
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
     fetch(url)
     .then(res=> res.json())
@@ -72,7 +84,6 @@ const closedCard = () =>{
         const closedD = data.data.filter(closedData => closedData.status ==='closed')
         displayCard(closedD)
     })
-    // totalIssue.innerText= closedCard.length;
 }
 
 loadCard()
