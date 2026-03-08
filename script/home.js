@@ -2,9 +2,14 @@ const totalIssue = document.getElementById("total-issue");
 
 const loadCard = () => {
     handleActiveButton("all-btn");
+    manageSpinner(true)
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
-        .then(data => displayCard(data.data))
+        .then(data => {
+            displayCard(data.data)
+             manageSpinner(false);
+        })
+       
 }
 
 const handleActiveButton = (activeId) => {
@@ -14,6 +19,15 @@ const handleActiveButton = (activeId) => {
     });
     const clickedBtn = document.getElementById(activeId);
     clickedBtn.classList.add("btn-primary");
+}
+
+const manageSpinner = (status)=>{
+    if(status==true){
+        document.getElementById("spinner").classList.remove("hidden")
+    }
+    else{
+        document.getElementById("spinner").classList.add("hidden")
+    }
 }
 
 const loadModal = (id) => {
@@ -33,6 +47,9 @@ const displayModal = (word) => {
     if (word.priority.toLowerCase() === 'low'){ 
         priorityBg = "bg-gray-500";}
 
+
+// "updatedAt": "2024-01-15T10:30:00Z"
+
     const labelsHTML = word.labels.map(label => {
         let bgColor, textColor, icon, borderColor;
         if (label.toLowerCase() === "bug") {
@@ -48,15 +65,15 @@ const displayModal = (word) => {
             icon = "fa-solid fa-helicopter-symbol";
         }
         else if (label.toLowerCase() === "enhancement") {
-            bgColor = "bg-blue-100";
-            textColor = "text-blue-600";
-            borderColor = "border-blue-200";
+            bgColor = "bg-green-100";
+            textColor = "text-green-600";
+            borderColor = "border-green-200";
             icon = "fa-solid fa-wand-magic-sparkles";
         }
         else {
-            bgColor = "bg-gray-100";
+            bgColor = "bg-gray-200";
             textColor = "text-gray-600";
-            borderColor = "border-gray-200";
+            borderColor = "border-gray-300";
             icon = "fa-solid fa-tag";
         }
 
@@ -74,15 +91,15 @@ const displayModal = (word) => {
     detailContainer.innerHTML = `
     
                 <div>
-                  <h2 class="text-2xl font-bold text-[#1F2937]">${word.title ? word.title : "Not Found"}</h2>
-                    <div class="flex gap-4 items-center">
+                  <h2 class="text-xl pb-2 font-bold text-[#1F2937]">${word.title ? word.title : "Not Found"}</h2>
+                    <div class="flex gap-3 items-center">
                         <p class="${statusBg} rounded-full px-2 text-white">${word.status}</p>
 
-                        <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-                        <p class="text-[14px] text-[#64748B]">Opened by ${word.author ? word.author:"Not Found" }</p>
+                        <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
+                        <p class="text-[12px] text-[#64748B]">Opened by ${word.author ? word.author:"Not Found" }</p>
 
-                        <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-                        <p class="text-[14px] text-[#64748B]">22/02/2026</p>
+                        <span class="w-1 h-1 bg-gray-500 rounded-full"></span>
+                        <p class="text-[12px] text-[#64748B]">${word.updatedAt}</p>
                     </div>
                 </div>
 
@@ -92,7 +109,7 @@ const displayModal = (word) => {
                 <div>
                     <p class="text-[#64748B]">${word.description}</p>
                 </div>
-                <div class="bg-base-200 flex gap-10 p-4 rounded-lg">
+                <div class="bg-base-300 border border-gray-100 flex gap-10 p-4 rounded-lg">
                     <div>
                         <p class="text-[#64748B]">Assignee:</p>
                         <p class="font-semibold text-[#1F2937]">${word.author ? word.author : "Not Found"}</p>
@@ -102,7 +119,6 @@ const displayModal = (word) => {
                         <p class="${priorityBg} rounded-full px-2 text-white">${word.priority}</p>
                     </div>
                 </div>
-
     `
     document.getElementById("my_modal_5").showModal();
 }
@@ -116,27 +132,27 @@ const displayCard = (cards) => {
             let bgColor, textColor, icon, borderColor;
 
             if (label.toLowerCase() === "bug") {
-                bgColor = "bg-red-50";
+                bgColor = "bg-red-100";
                 textColor = "text-red-500";
-                borderColor = "border-red-100";
+                borderColor = "border-red-200";
                 icon = "fa-solid fa-bug";
 
-            } else if (label.toLowerCase() === "help wanted") {
-                bgColor = "bg-yellow-50";
+            } else if (label.toLowerCase() === "help wanted") { 
+                bgColor = "bg-yellow-100";
                 textColor = "text-yellow-600";
-                borderColor = "border-yellow-100";
+                borderColor = "border-yellow-200";
                 icon = "fa-solid fa-helicopter-symbol";
 
             } else if (label.toLowerCase() === "enhancement") {
-                bgColor = "bg-blue-50";
-                textColor = "text-blue-600";
-                borderColor = "border-blue-100";
+                bgColor = "bg-green-100";
+                textColor = "text-green-600";
+                borderColor = "border-green-200";
                 icon = "fa-solid fa-wand-magic-sparkles";
 
             } else {
-                bgColor = "bg-gray-50";
+                bgColor = "bg-gray-200";
                 textColor = "text-gray-500";
-                borderColor = "border-gray-100";
+                borderColor = "border-gray-200";
                 icon = "fa-solid fa-tag";
             }
 
@@ -146,17 +162,33 @@ const displayCard = (cards) => {
 
         let priorityBg = "bg-gray-100";
         let priorityText = "text-gray-600";
+        let priorityBorder = "border-gray-100"
 
         if (card.priority.toLowerCase() === "high") {
             priorityBg = "bg-red-100";
             priorityText = "text-red-500";
+            priorityBorder = "border-red-100"
         } else if (card.priority.toLowerCase() === "medium") {
             priorityBg = "bg-yellow-100";
             priorityText = "text-yellow-600";
+            priorityBorder = "border-yellow-100"
         } else if (card.priority.toLowerCase() === "low") {
-            priorityBg = "bg-gray-100";
+            priorityBg = "bg-gray-200";
             priorityText = "text-gray-500";
+            priorityBorder = "border-gray-100"
         }
+
+// "title": "Fix navigation menu on mobile devices",
+// "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
+// "status": "open",
+// "labels": [
+// "bug",
+// "help wanted"
+// ],
+// "priority": "high",
+// "author": "john_doe",
+// "assignee": "jane_smith",
+// "createdAt": "2024-01-15T10:30:00Z",
 
         // for border color
         const borderBg = card.status === 'open' ? 'border-green-500' : 'border-purple-500';
@@ -165,7 +197,7 @@ const displayCard = (cards) => {
      <div onclick="loadModal(${card.id})" class="${borderBg} bg-base-100 p-4 space-y-3 rounded-lg border-t-5 ${card.status} shadow h-full">
             <div class="flex justify-between">
                 <div>${card.status == 'open' ? '<img/ src= "./assets/Open-Status.png">' : '<img/ src="./assets/Closed-Status.png">'}</div>
-                <div><p class="${priorityBg} ${priorityText} px-2 py-1 rounded-full font-semibold">${card.priority}</p></div>
+                <div><p class="${priorityBg} ${priorityText} ${priorityBorder} px-2  rounded-full font-semibold">${card.priority}</p></div>
             </div>
             <div>
                 <p class="font-semibold text-lg pb-2 text-[#1F2937]">${card.title}</p>
@@ -176,8 +208,8 @@ const displayCard = (cards) => {
             </div>
             <hr class="opacity-20 w-full">
             <div>
-                <p class="text-[#64748B]">${card.createdAt}</p>
-                <p class="text-[#64748B]">${card.updatedAt}</p>
+                <p class="text-[#64748B] text-[12px]">Author: ${card.author ? card.author: "Author not Found"}</p>
+                <p class="text-[#64748B] text-[12px]">${card.createdAt}</p>
             </div>
 
         </div>
@@ -191,23 +223,28 @@ const displayCard = (cards) => {
 
 const openCard = () => {
     handleActiveButton("open-btn");
+    manageSpinner(true)
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
     fetch(url)
         .then(res => res.json())
         .then(json => {
             const openD = json.data.filter(openData => openData.status === 'open')
-            displayCard(openD)
+            manageSpinner(false);
+            displayCard(openD);
+            
         })
 }
 
 const closedCard = () => {
     handleActiveButton("closed-btn");
+    manageSpinner(true)
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
     fetch(url)
         .then(res => res.json())
         .then(data => {
             const closedD = data.data.filter(closedData => closedData.status === 'closed')
-            displayCard(closedD)
+            manageSpinner(false);
+            displayCard(closedD);
         })
 }
 
