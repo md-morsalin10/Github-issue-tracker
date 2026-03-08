@@ -49,9 +49,7 @@ const displayModal = (word) => {
     if (word.priority.toLowerCase() === 'low'){ 
         priorityBg = "bg-gray-500";}
 
-
-// "updatedAt": "2024-01-15T10:30:00Z"
-
+        
     const labelsHTML = word.labels.map(label => {
         let bgColor, textColor, icon, borderColor;
         if (label.toLowerCase() === "bug") {
@@ -180,23 +178,12 @@ const displayCard = (cards) => {
             priorityBorder = "border-gray-100"
         }
 
-// "title": "Fix navigation menu on mobile devices",
-// "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-// "status": "open",
-// "labels": [
-// "bug",
-// "help wanted"
-// ],
-// "priority": "high",
-// "author": "john_doe",
-// "assignee": "jane_smith",
-// "createdAt": "2024-01-15T10:30:00Z",
-
         // for border color
         const borderBg = card.status === 'open' ? 'border-green-500' : 'border-purple-500';
+
         const newDiv = document.createElement("div")
         newDiv.innerHTML = `
-     <div onclick="loadModal(${card.id})" class="${borderBg} bg-base-100 p-4 space-y-3 hover:bg-pink-100 rounded-lg border-t-5 ${card.status} shadow h-full">
+        <div onclick="loadModal(${card.id})" class="${borderBg} bg-base-100 p-4 space-y-3 hover:bg-pink-100 rounded-lg border-t-5 ${card.status} shadow h-full">
             <div class="flex justify-between">
                 <div>${card.status == 'open' ? '<img/ src= "./assets/Open-Status.png">' : '<img/ src="./assets/Closed-Status.png">'}</div>
                 <div><p class="${priorityBg} ${priorityText} ${priorityBorder} px-2  rounded-full font-semibold">${card.priority}</p></div>
@@ -255,7 +242,6 @@ loadCard()
 document.getElementById("btn-search").addEventListener("click", () =>{
     const input = document.getElementById("input-search");
     const searchValue = input.value.trim().toLowerCase()
-    console.log(searchValue);
     manageSpinner(true);
 
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -265,7 +251,6 @@ document.getElementById("btn-search").addEventListener("click", () =>{
         const filterIssue = allIssue.filter((issue)=>
             issue.title.toLowerCase().includes(searchValue)
         );
-        // console.log(filterWord);
         displayCard(filterIssue);
         manageSpinner(false);
         

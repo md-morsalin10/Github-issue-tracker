@@ -5,7 +5,7 @@ document.getElementById("login-btn").addEventListener("click", ()=>{
     console.log(name);
     const userPassword = document.getElementById("password");
     const pin = userPassword.value;
-    console.log(pin);
+    console.log(pin);  
 
     if(name == "admin" && pin == "admin123"){
         alert("login successful")

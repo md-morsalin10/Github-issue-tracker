@@ -29,32 +29,31 @@
         <div class="navbar w-full">
             <div class="navbar bg-base-100 shadow-sm">
                 <div class="navbar-start">
-                    
+
                     <div>
                         <img class="w-[30px] h-[30px] lg:w-[36px] lg:h-[37px]" src="./assets/github-logo.png" alt="">
                     </div>
                     <div class="pl-2">
-                        <p class="hidden lg:block text-[#1F2937] lg:text-2xl font-semibold">GitHub Issues Tracker</p>
+                        <p class="flex flex-wrap text-[#1F2937] lg:text-2xl font-semibold">GitHub Issues Tracker</p>
                     </div>
                 </div>
 
                 <div class="navbar-end">
                     <div class="join">
                         <div class="pr-2 lg:pr-4 w-full lg:w-auto">
-                            <label class="input validator rounded flex items-center gap-2 w-32 sm:w-48 lg:w-auto">
+                            <label
+                                class="input validator rounded flex items-center gap-2 w-20 sm:w-48 h-8 lg:h-10 lg:w-auto">
                                 <span class="text-[#64748B]"><i class="fa-solid fa-magnifying-glass"></i></span>
                                 <input id="input-search" type="text" placeholder="Search issues..." required />
                             </label>
                         </div>
-                        <button id="btn-search" class="btn btn-md btn-primary rounded whitespace-nowrap">+ New Issue</button>
+                        <button id="btn-search" class="btn btn-sm lg:btn-md btn-primary rounded whitespace-nowrap">+ New
+                            Issue</button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-
-
 
     <!--btn section  -->
     <section class="w-10/12 mx-auto">
@@ -66,7 +65,7 @@
     </section>
 
     <!--total issue  -->
-    <section class="w-10/12 mx-auto py-5">
+    <section class="w-10/12 mx-auto py-5 ">
         <div class="flex justify-between items-center bg-base-100 rounded-lg shadow-sm py-2 lg:py-5 px-1 lg:px-5">
             <div class="flex items-center gap-3">
                 <div><img src="./assets/Aperture.png" alt=""></div>
@@ -76,14 +75,19 @@
                 </div>
             </div>
             <div class="flex items-center gap-1 lg:gap-3">
-                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                <p class="text-sm lg:text-[16px]">open</p>
-                <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
-                <p class="text-sm lg:text-[16px]">closed</p>
+                <div class="flex justify-start items-center gap-1">
+                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <p class="text-sm lg:text-[16px]">open</p>
+                </div>
+                <div class="flex justify-center items-center gap-1">
+                    <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+                    <p class="text-sm lg:text-[16px]">closed</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- loading spinner -->
     <section id="spinner" class="flex justify-center items-center hidden">
         <span class="loading bg-primary loading-infinity loading-xl"></span>
     </section>
@@ -97,7 +101,7 @@
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
             <div id="details-container" class="space-y-6 p-5">
-              
+
 
             </div>
             <div class="modal-action">
@@ -109,7 +113,7 @@
         </div>
     </dialog>
 
-    
+
     <script src="script/home.js"></script>
 </body>
 
