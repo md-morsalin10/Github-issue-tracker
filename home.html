@@ -42,10 +42,10 @@
                         <div class="pr-4">
                             <label class="input validator join-item rounded">
                                 <span class="text-[#64748B]"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                <input type="text" placeholder="Search issues..." required />
+                                <input id="input-search" type="text" placeholder="Search issues..." required />
                             </label>
                         </div>
-                        <button class="btn btn-primary rounded"> + New Issue</button>
+                        <button id="btn-search" class="btn btn-primary rounded"> + New Issue</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
     <!--total issue  -->
     <section class="w-10/12 mx-auto py-5">
-        <div class="flex justify-between items-center bg-base-100 rounded-lg shadow-sm py-6 px-6">
+        <div class="flex justify-between items-center bg-base-100 rounded-lg shadow-sm py-5 px-5">
             <div class="flex items-center gap-3">
                 <div><img src="./assets/Aperture.png" alt=""></div>
                 <div>
@@ -81,7 +81,7 @@
     </section>
 
     <section id="spinner" class="flex justify-center items-center hidden">
-        <span class="loading loading-infinity loading-xl"></span>
+        <span class="loading bg-primary loading-infinity loading-xl"></span>
     </section>
 
     <!-- all cards -->
